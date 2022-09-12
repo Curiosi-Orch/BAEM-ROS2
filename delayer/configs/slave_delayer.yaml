@@ -1,0 +1,20 @@
+slave_delayer:
+  ros__parameters:
+    sub_timestamp_topic_name: "timestamp_master_d"
+    sub_delay_remote_estimation_list_topic_name: "tau_sm_estimation_list_d"
+    sub_delay_local_prediction_list_topic_name: "tau_ms_local_prediction_output"
+    pub_timestamp_topic_name: "timestamp_slave"
+    pub_delay_truth_topic_name: "tau_ms_truth"
+    pub_delay_local_prediction_list_topic_name: "tau_ms_local_prediction_input"
+    pub_delay_remote_estimation_list_topic_name: "tau_ms_estimation_list"
+    pub_delay_computation_topic_name: "tau_computation_slave"
+    pub_advance_q_topic_name: "q_sm"
+    frequency: 100.0
+    input_stack_length: 400
+
+slave_delay_predictor:
+  ros__parameters:
+    sub_local_prediction_list_topic_name: "tau_ms_local_prediction_input"
+    pub_local_prediction_list_topic_name: "tau_ms_local_prediction_output"
+    prediction_project_path: "/../../Bilateral-Active-Estimation-Model/" # relative to BAEM_ROS2_ws/src/
+    prediction_model_dirname: "thesis/delay/D1-3/results/"

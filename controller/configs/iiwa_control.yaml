@@ -1,0 +1,51 @@
+iiwa_control:
+  ros__parameters:
+    sub_joint_command_topic_name: "joint_command_d"
+    sub_pose_command_topic_name: "pose_command_d"
+    pub_joint_state_topic_name: "joint_state"
+    pub_pose_state_topic_name: "pose_state"
+    sub_trajectory_prediction_list_topic_name: "passive_prediction_output"
+    pub_trajectory_prediction_list_topic_name: "passive_prediction_input"
+    frequency: 100.0
+    input_stack_length: 400
+
+    DHtable_path: "DH_models/DH_Kuka_IIWA_7.txt" # relative to BAEM_ROS2_ws/src/iiwa_controller/configs/
+    joint_home_path: "home.txt" # relative to BAEM_ROS2_ws/src/iiwa_controller/configs/
+
+    # configurations for iiwa controller
+    # connection
+    ip_iiwa: 192.170.10.102
+    port_iiwa: 18000
+    port_local: 9877
+    timeout_initial: 6000.
+    timeout_communication: 10000.
+    id: SuturingKuka
+    planner_sleep_time: 3.
+    planner_cycle_time: 5.
+
+    # kinematics limitations
+    max_velocity: [1e2,1e2,1e2,1e2,1e2,1e2]
+    max_acceleration: [1e5,1e5,1e5,1e5,1e5,1e5]
+    max_joint_velocity: [1e5,1e5,1e5,1e5,1e5,1e5,1e5] # deg/s
+    max_joint_acceleration: [1e5,1e5,1e5,1e5,1e5,1e5,1e5] # deg/s^2
+
+    min_joint_limits: [-150.,-110.,-150.,-120.,-150.,-110.,-150.]
+    max_joint_limits: [150.,110.,150.,120.,150.,110.,150.]
+
+    min_workspace_limits: [-500.,-500.,0.] # x,y,z
+    max_workspace_limits: [500.,500.,1000.] # x,y,z
+
+# slave_displayer:
+#   ros__parameters:
+#     sub_pose_command_topic_name: "pose_command_d"
+#     sub_pose_raw_topic_name: "pose_raw_d"
+#     sub_pose_state_topic_name: "pose_state"
+#     input_stack_length: 100
+
+trajectory_predictor_passive:
+  ros__parameters:
+    sub_trajectory_prediction_list_topic_name: "passive_prediction_input"
+    pub_trajectory_prediction_list_topic_name: "passive_prediction_output"
+    # relative to BAEM_ROS2_ws/src/
+    prediction_project_path: "/../../Bilateral-Active-Estimation-Model/" 
+    prediction_model_dirname: "thesis/possition_passive/D2/task/circle/results/"

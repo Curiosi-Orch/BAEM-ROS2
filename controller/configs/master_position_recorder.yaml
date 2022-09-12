@@ -1,0 +1,9 @@
+master_position_recorder:
+  ros__parameters:
+    sub_position_state_topic_name: "pose_state_d"
+    sub_position_command_topic_name: "pose_command"
+    sub_position_raw_topic_name: "pose_raw"
+    # relative to BAEM_ROS2_ws/src/
+    save_path: "controller/data/position_master.csv" 
+    frequency: 100.0
+    duration: 30 #s

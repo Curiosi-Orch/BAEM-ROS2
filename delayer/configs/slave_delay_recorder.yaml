@@ -1,0 +1,10 @@
+slave_delay_recorder:
+  ros__parameters:
+    sub_delay_truth_topic_name: "tau_ms_truth"
+    sub_delay_raw_topic_name: "tau_sm_truth_d"
+    sub_delay_estimation_list_topic_name: "tau_sm_estimation_list_d"
+    sub_delay_computation_topic_name: "tau_computation_slave"
+    sub_advance_q_topic_name: "q_sm"
+    save_path: "delayer/data/delay_slave.csv" # relative to BAEM_ROS2_ws/src/
+    frequency: 100.0
+    duration: 60 #s

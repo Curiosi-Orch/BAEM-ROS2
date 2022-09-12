@@ -1,0 +1,36 @@
+commander:
+  ros__parameters:
+    sub_joint_state_topic_name: "joint_state_d"
+    sub_pose_state_topic_name: "pose_state_d"
+    sub_trajectory_prediction_list_topic_name: "active_prediction_output"
+    sub_advance_q_topic_name: "q_ms"
+    pub_joint_command_topic_name: "joint_command"
+    pub_pose_command_topic_name: "pose_command"
+    pub_pose_raw_topic_name: "pose_raw"
+    pub_trajectory_prediction_list_topic_name: "active_prediction_input"
+    # relative to BAEM_ROS2_ws/src/
+    trajectory_0_filepath: "controller/data/trajectory/20220816/circle.csv" 
+    trajectory_1_filepath: "controller/data/trajectory/20220816/lissajous.csv" 
+    joint_increment: 1.0 # deg
+    orientation_increment: 1.0 # deg
+    position_increment: 1.0 # mm
+    frequency: 100.0
+    input_stack_length: 400
+    output_stack_length: 10 # previous command stack for output filter
+    prediction_filter_radius: 0 # half of length for prediction used for output filter
+    mechanical_delay: 80.0 # ms
+
+trajectory_predictor:
+  ros__parameters:
+    sub_trajectory_prediction_list_topic_name: "active_prediction_input"
+    pub_trajectory_prediction_list_topic_name: "active_prediction_output"
+    # relative to BAEM_ROS2_ws/src/
+    prediction_project_path: "/../../Bilateral-Active-Estimation-Model/" 
+    prediction_model_dirname: "thesis/possition_active/tele/peg/results/"
+
+master_displayer:
+  ros__parameters:
+    sub_pose_command_topic_name: "pose_command"
+    sub_pose_raw_topic_name: "pose_raw"
+    sub_pose_state_topic_name: "pose_state"
+    input_stack_length: 100
